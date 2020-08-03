@@ -1,0 +1,16 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+<section class="page-section bg-dark" id="about">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="text-white mt-0">{{ user.first_name }} {{ user.last_name }}</h2>
+                <hr class="divider white my-4" />
+                <p class="text-white-50 mb-4">{{ user.username }}</p>
+                <p class="text-white-50 mb-4">{{ user.email }}</p>
+                </div>
+        </div>
+    </div>
+</section>

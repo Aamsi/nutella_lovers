@@ -1,3 +1,50 @@
-from django.shortcuts import render
+from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+from .forms import SignUpForm, SigninForm
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+            return redirect('welcome')
+    else:
+        form = SignUpForm()
+    return render(request, 'user/signup.html', {'form': form})
+
+@login_required(login_url='/account/login/')
+def signout(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect('welcome')
+
+def signin(request):
+    errors = None
+    if request.method == 'POST':
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('welcome')
+            else:
+                errors = "Mauvais identifiants, veuillez réessayer"
+        else:
+            errors = "Une erreur a eu lieu, veuillez réessayer"
+    else:
+        form = SigninForm()
+    return render(request, 'user/signin.html', {'form': form, 'errors': errors})
+
+@login_required(login_url='/account/login/')
+def my_account(request):
+    return render(request, 'user/myaccount.html')

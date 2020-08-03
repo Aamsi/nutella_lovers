@@ -1,0 +1,25 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+{% load crispy_forms_tags %}
+<head>
+    <link href="{% static 'user/css/signup.css' %}" rel="stylesheet" />
+</head>
+
+<body class='bg'>
+    <div class='container'>
+        <div class='form-sign'>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ errors }}
+                </div>
+                {% endif %}
+                <button type="submit" class="btn btn-success">Se connecter</button>
+            </form>
+        </div>
+    </div>
+</body>

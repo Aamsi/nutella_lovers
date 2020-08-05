@@ -5,12 +5,18 @@ from django.contrib.auth.models import User
 class Categories(models.Model):
     category_name = models.CharField(max_length=255, unique=True, null=False)
 
+    def __str__(self):
+        return self.category_name
+
 class PurchaseStores(models.Model):
     store_name = models.CharField(max_length=255, unique=True, null=False)
 
+    def __str__(self):
+        return self.store_name
+
 class Products(models.Model):
     product_name = models.CharField(max_length=255, unique=True, null=False)
-    nutri_score = models.CharField(max_length=1, null=True)
+    nutriscore = models.CharField(max_length=20, null=True)
     link = models.TextField(null=False)
     details = models.TextField(null=True)
     category = models.ForeignKey(

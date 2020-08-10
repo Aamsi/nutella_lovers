@@ -6105,7 +6105,8 @@ button.bg-primary:focus {
 }
 
 .bg-secondary {
-  background-color: #6c757d !important;
+  background-color: rgba(40, 39, 39, 0.51) !important;
+  opacity: 0.8;
 }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
@@ -10033,7 +10034,8 @@ hr.light {
 
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  background-color: #fff;
+  background-color:rgba(40, 39, 39, 0.51) !important;
+  opacity: 0.8;
   transition: background-color 0.2s ease;
 }
 #mainNav .navbar-brand {
@@ -10042,7 +10044,7 @@ hr.light {
   color: #212529;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
-  color: #6c757d;
+  color: #fafdff;
   font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   font-size: 0.9rem;
@@ -10077,7 +10079,7 @@ hr.light {
   }
   #mainNav.navbar-scrolled {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    background-color: #fff;
+    background-color: rgb(29, 25, 25);
   }
   #mainNav.navbar-scrolled .navbar-brand {
     color: #212529;

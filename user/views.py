@@ -29,10 +29,8 @@ def signin(request):
         form = SigninForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            print(email)
             password = form.cleaned_data.get('password')
             user = authenticate(request, email=email, password=password)
-            print(user)
             if user:
                 login(request, user)
                 return redirect('welcome')

@@ -34,10 +34,6 @@ class SigninForm(forms.Form):
     email = forms.EmailField(
         label="Email",
     )
-    # username = UsernameField(
-    #     label="Nom d'utilisateur",
-    #     widget=forms.TextInput(attrs={'autofocus': True}),
-    # )
     password = forms.CharField(
         label='Mot de passe',
         strip=False,

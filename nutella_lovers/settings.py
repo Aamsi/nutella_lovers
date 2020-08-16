@@ -127,3 +127,9 @@ STATIC_URL = '/static/'
 
 # Load crispy forms tags with bootstrap4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Uses a custom authentication backend
+AUTHENTICATION_BACKENDS = ['user.auth_module.AuthenticateEmail']
+
+# Use a custom user model
+AUTH_USER_MODEL = 'user.User'

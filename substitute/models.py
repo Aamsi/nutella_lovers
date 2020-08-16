@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from nutella_lovers import settings
+
 
 class Categories(models.Model):
     category_name = models.CharField(max_length=255, unique=True, null=False)
@@ -32,7 +34,7 @@ class Products(models.Model):
 
 class Favorites(models.Model):
     fav_user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='favs',
         verbose_name="user's favorites substitutes"

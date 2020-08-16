@@ -17,7 +17,7 @@ class PurchaseStores(models.Model):
 class Products(models.Model):
     product_name = models.CharField(max_length=255, unique=True, null=False)
     nutriscore = models.CharField(max_length=20, null=True)
-    link = models.TextField(null=False)
+    barcode = models.TextField(null=False)
     details = models.TextField(null=True)
     category = models.ForeignKey(
         Categories,

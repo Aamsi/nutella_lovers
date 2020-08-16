@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Uses a custom authentication backend
-AUTHENTICATION_BACKENDS = ['user.auth_module.AuthenticateEmail']
+AUTHENTICATION_BACKENDS = ['user.authenticate.AuthenticateEmail']
 
 # Use a custom user model
 AUTH_USER_MODEL = 'user.User'

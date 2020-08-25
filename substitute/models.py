@@ -5,26 +5,26 @@ from nutella_lovers import settings
 
 
 class Categories(models.Model):
-    category_name = models.CharField(max_length=255, unique=True, null=False)
+    name = models.CharField(max_length=255, unique=True, null=False)
+    en_id = models.CharField(max_length=255, unique=True, null=True)
 
     def __str__(self):
-        return self.category_name
+        return self.name
 
 class PurchaseStores(models.Model):
-    store_name = models.CharField(max_length=255, unique=True, null=False)
+    name = models.CharField(max_length=255, unique=True, null=False)
 
     def __str__(self):
-        return self.store_name
+        return self.name
 
 class Products(models.Model):
-    product_name = models.CharField(max_length=255, unique=True, null=False)
+    name = models.CharField(max_length=255, unique=True, null=False)
     nutriscore = models.CharField(max_length=20, null=True)
     barcode = models.TextField(null=False)
     details = models.TextField(null=True)
-    category = models.ForeignKey(
+    categories = models.ManyToManyField(
         Categories,
-        on_delete=models.CASCADE,
-        verbose_name="product's category"
+        verbose_name="product's categories"
     )
     purchase_store = models.ForeignKey(
         PurchaseStores,

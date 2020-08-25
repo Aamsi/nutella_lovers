@@ -1,0 +1,11 @@
+.bg {
+    padding-top: 5rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(124, 118, 115, 0.8) 100%), url("../images/bg_form.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+ul, label {
+    color: black;
+}

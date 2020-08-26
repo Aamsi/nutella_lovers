@@ -10,7 +10,9 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</p>
-                        <input class="form-control form-control-lg" type="search" placeholder="Chercher" aria-label="Search">
+                        <form method="GET" action="{% url 'search' %}">
+                            <input class="form-control form-control-lg" name="q" type="search" placeholder="Chercher" aria-label="Search">
+                        </form>
                     </div>
                 </div>
             </div>

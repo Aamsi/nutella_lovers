@@ -30,7 +30,11 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li><input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search"></li>
+                        <li>
+                            <form method="GET" action="{% url 'search' %}">
+                                <input class="form-control mr-sm-2" name="q" id="search_input" placeholder="Chercher" aria-label="Search">
+                            </form>
+                        </li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"><i class="fa-2x fas fa-carrot" aria-hidden="true"></i></a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'myaccount' %}"><i class="fa-2x fas fa-user" aria-hidden="true"></i></a></li>

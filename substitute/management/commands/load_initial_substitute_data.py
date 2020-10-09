@@ -1,4 +1,3 @@
-from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -11,11 +10,20 @@ from substitute.models import Categories, PurchaseStores, Products
 class Command(BaseCommand):
     help = "Load initial data"
 
+    def add_arguments(self, parser):
+        parser.add_argument('-d', '--delete', action='store_true', help='Delete all rows in database')
+        parser.add_argument('count', type=int, help='Indicates the number of instances to be created')
+
     def handle(self, *args, **options):
+        delete = options['delete']
+        count = options['count']
         opf = Openfoodfacts()
-        opf.insert_categories()
-        opf.insert_stores()
+        if delete:
+            return opf.delete_all()
+        opf.insert_categories(count)
+        opf.insert_stores(count)
         opf.insert_products()
+
 
 
 class Openfoodfacts():
@@ -23,22 +31,19 @@ class Openfoodfacts():
     def __init__(self):
         self.categories_url = "https://fr.openfoodfacts.org/categories&json=1"
         self.stores_url = "https://fr.openfoodfacts.org/stores&json=1"
-        self.categories = []
-        self.stores = []
-        self.products = []
 
-    def insert_categories(self):
+    def insert_categories(self, count):
         res = requests.get(self.categories_url)
-        categories = res.json()['tags'][:200]
+        categories = res.json()['tags'][:count]
         for category in categories:
             Categories.objects.get_or_create(
                 name=category['name'],
                 en_id=category['id']
             )
 
-    def insert_stores(self):
+    def insert_stores(self, count):
         res = requests.get(self.stores_url)
-        stores = res.json()['tags'][:200]
+        stores = res.json()['tags'][:count]
         for store in stores:
             PurchaseStores.objects.get_or_create(name=store['name'])
 
@@ -91,3 +96,11 @@ class Openfoodfacts():
             return product['generic_name_fr']
         except KeyError:
             return None
+    
+    def delete_all(self):
+        stores = PurchaseStores.objects.all()
+        categories = Categories.objects.all()
+        products = Products.objects.all()
+        stores.delete()
+        categories.delete()
+        products.delete()

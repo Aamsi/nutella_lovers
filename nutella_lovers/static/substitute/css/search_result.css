@@ -1,0 +1,16 @@
+.result-block {
+    padding-top: 5rem;
+    background: rgba(92, 77, 66, 0.8);
+}
+
+.card {
+    background-color: #bdbdbd;
+}
+
+.card-header {
+    background-color: #979797;
+}
+
+.not-found {
+    font-size: 80px;
+}

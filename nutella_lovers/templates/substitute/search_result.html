@@ -1,0 +1,39 @@
+{% load static %}
+{% include 'header.html' %}
+
+<head>
+    <link href="{% static 'substitute/css/search_result.css' %}" rel="stylesheet" />
+</head>
+
+
+<body class="result-block">
+    {% if products %}
+        <div class="row m-5">
+            {% for product in products %}
+            <div class="col-sm-4">
+                <div class="card text-center mb-5">
+                    <div class="card-body">
+                        <div class="card-header mb-3">{{ product.name }}</div>
+                        {% if product.details %}
+                        <p class="card-text">{{ product.details }}</p>
+                        {% else %}
+                        <p class="card-text">Aucun details</p>
+                        {% endif %}
+                        <div class="store">{{ product.purchase_store.name }}</div></br>
+                        <a href="https://fr.openfoodfacts.org/product/{{ product.barcode }}" target="_blank" rel="noopener noreferrer">Lien vers Openfoodfacts</a></br></br>
+                        {% if product.nutriscore == "not-applicable" or product.nutriscore == "unknown" %}
+                        <p>?</p>
+                        {% else %}
+                        <p>{{ product.nutriscore|upper }}</p>
+                        {% endif %}
+                        <a href="#" class="btn btn-primary mr-3">Substituts</a>
+                        <a href="#" class="btn btn-primary">Sauvegarder</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+    <p class="not-found text-center">Aucun resultat</h5>
+    {% endif %}
+</body>

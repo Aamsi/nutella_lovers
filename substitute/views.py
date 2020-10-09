@@ -20,7 +20,7 @@ def search_substitute(request):
     effective_products = Products.objects.annotate(
             common_category=Count("categories", filter=Q(categories__in=products_found)))\
             .filter(common_category__gt=5)\
-            .order_by("nutriscore", "-common_category")
+            .order_by("nutriscore", "-common_category")[:20]
 
     return render(request, 'substitute/search_result.html', {
         'products': effective_products

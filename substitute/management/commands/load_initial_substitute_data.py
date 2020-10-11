@@ -71,7 +71,8 @@ class Openfoodfacts():
                     nutriscore=product['nutrition_grades_tags'][0],
                     barcode=product['code'],
                     details=self.generic_name(product),
-                    purchase_store=store_instance
+                    purchase_store=store_instance,
+                    thumbnail=self.get_thumbnail(product)
                 )
                 self.add_categories(product, product_added[0])
 
@@ -97,6 +98,12 @@ class Openfoodfacts():
         except KeyError:
             return None
     
+    def get_thumbnail(self, product):
+        try:
+            return product['image_thumb_url']
+        except KeyError:
+            return None
+
     def delete_all(self):
         stores = PurchaseStores.objects.all()
         categories = Categories.objects.all()

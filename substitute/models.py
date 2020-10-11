@@ -22,6 +22,7 @@ class Products(models.Model):
     nutriscore = models.CharField(max_length=20, null=True)
     barcode = models.TextField(null=False)
     details = models.TextField(null=True)
+    thumbnail = models.TextField(null=True)
     categories = models.ManyToManyField(
         Categories,
         verbose_name="product's categories"

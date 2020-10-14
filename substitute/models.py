@@ -40,12 +40,6 @@ class Favorites(models.Model):
         related_name='favs',
         verbose_name="user's favorites substitutes"
     )
-    product_replaced = models.ForeignKey(
-        Products,
-        on_delete=models.CASCADE,
-        related_name="replaced",
-        verbose_name="replaced product"
-    )
     product_replacement = models.ForeignKey(
         Products,
         on_delete=models.CASCADE,

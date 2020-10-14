@@ -35,7 +35,7 @@
                                 <input class="form-control mr-sm-2" name="q" id="search_input" placeholder="Chercher" aria-label="Search">
                             </form>
                         </li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services"><i class="fa-2x fas fa-carrot" aria-hidden="true"></i></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'favs' %}"><i class="fa-2x fas fa-carrot" aria-hidden="true"></i></a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'myaccount' %}"><i class="fa-2x fas fa-user" aria-hidden="true"></i></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'signout' %}"><i class="fa-2x fas fa-sign-out-alt" aria-hidden="true"></i></a></li>

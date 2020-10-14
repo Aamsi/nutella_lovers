@@ -7,9 +7,9 @@
 
 
 <body class="result-block">
-    {% if products %}
+    {% if favs %}
         <div class="row m-5">
-            {% for product in products %}
+            {% for product in favs %}
             <div class="col-sm-4">
                 <div class="card text-center mb-5">
                     <div class="card-body">
@@ -28,19 +28,15 @@
                         <p>?</p>
                         {% else %}
                         <p>{{ product.nutriscore|upper }}</p>
-						{% endif %}
-						{% if product.id in favs %}
-						<a class="btn btn-primary substitute_save" data-id='{{ product.id }}'>Oublier</a>
-						{% else %}
-						<a class="btn btn-primary substitute_save" data-id='{{ product.id }}'>Sauvegarder</a>
-						{% endif %}
+                        {% endif %}
+                        <a class="btn btn-primary substitute_forget" data-id='{{ product.id }}'>Oublier</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     {% else %}
-    <p class="not-found text-center">Aucun resultat</p>
+    <p class="not-found text-center">Aucun favori</p>
     {% endif %}
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -48,20 +44,12 @@
             crossorigin="anonymous">
     </script>
     <script>
-            $(".substitute_save").click(function() {
-                that = this;
-                if ($(this).text() == 'Sauvegarder') {
-                    $.get('/substitute/save/', {'product_id' : $(this).data('id')})
-                    .done(function () {
-                        $(that).text('Oublier');
-                    });
-                }
-                else {
-                    $.get('/substitute/forget/', {'product_id' : $(this).data('id')})
-                    .done(function () {
-                        $(that).text('Sauvegarder');
-                    });
-                }
+        $(".substitute_forget").click(function() {
+            that = this;
+            $.get('/substitute/forget/', {'product_id' : $(this).data('id')})
+            .done(function () {
+                location.reload();
             })
-    </script>
+        })
+</script>
 </body>

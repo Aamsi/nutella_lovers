@@ -1,4 +1,4 @@
-Django==3.0.8
+Django==3.0.12
 django-environ==0.4.5
 # You need to have the libpq-dev package installed on your OS in order to get the psycopg2 package
 psycopg2==2.8.5
